@@ -6,6 +6,7 @@ import httpx
 
 from invoke import task
 
+
 @task
 def setup(c):
     local_lambda_emulator_path = "./.direnv/.aws-lambda-rie"
@@ -16,6 +17,11 @@ def setup(c):
 
     c.run(f"chmod +x {local_lambda_emulator_path}/aws-lambda-rie")
 
+    c.run("npm install")
+
+    c.run("npm run bootstrap")
+
+
 @task
 def run_lambda(c):
     """
@@ -23,13 +29,14 @@ def run_lambda(c):
     """
     c.run("docker-compose up", pty=True)
 
+
 @task
 def local_event(c, method="GET", path="/items/"):
     """
     Send an HTTP Gateway event to the lambda runtime emulator
     """
     from aws_lambda_powertools.utilities.data_classes import APIGatewayProxyEventV2
-    
+
     http_event_dict = json.loads(pathlib.Path("event.json").read_text())
 
     http_event_dict["requestContext"]["http"]["path"] = path
@@ -44,6 +51,7 @@ def local_event(c, method="GET", path="/items/"):
 
     pprint.pprint(response.json())
 
+
 @task
-def build(c, tag=""):
-    c.run("docker-compose build --pull")
+def deploy(c):
+    c.run("npm run deploy", pty=True)

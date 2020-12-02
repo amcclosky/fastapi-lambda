@@ -1,7 +1,8 @@
 {
   "name": "fastapi-lambda",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "cdk deploy",
+    "bootstrap": "cdk bootstrap"
   },
   "private": true,
   "dependencies": {
