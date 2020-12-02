@@ -1,0 +1,4 @@
+__pycache__
+cdk.out
+.direnv
+node_modules

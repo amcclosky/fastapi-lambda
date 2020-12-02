@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  fastapi-lambda:
+    image: fastapi_lambda
+    build:
+      context: .
+    ports:
+      - "9000:8080"
+    volumes:
+      - "./.direnv/.aws-lambda-rie:/aws-lambda"
+    entrypoint: "/aws-lambda/aws-lambda-rie"
+    command: [ "/usr/local/bin/python", "-m", "awslambdaric", "lambda.handler" ]

@@ -1,0 +1,10 @@
+{
+  "name": "fastapi-lambda",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true,
+  "dependencies": {
+    "aws-cdk": "^1.76.0"
+  }
+}
