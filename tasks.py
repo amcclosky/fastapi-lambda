@@ -54,4 +54,5 @@ def local_event(c, method="GET", path="/items/"):
 
 @task
 def deploy(c):
+    c.run("poetry export -f requirements.txt -o requirements.txt")
     c.run("npm run deploy", pty=True)
